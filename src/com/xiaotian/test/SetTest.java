@@ -84,94 +84,122 @@ public class SetTest {
 	}
 	
 	@Test
-	public void setTest(){
-		set.getPlayer1().winSet();
-		set.getPlayer2().winSet();
-		set.getPlayer1().winSet();
-		set.getPlayer1().winSet();
-		set.getPlayer2().winSet();
-		set.getPlayer1().winSet();
-		set.getPlayer2().winSet();
-		set.getPlayer1().winSet();
+	public void setTestSimple(){
+		set.getPlayer1().setSetPoint(5);
+		set.getPlayer2().setSetPoint(3);
 		// 5 - 3
 		
-		set.getPlayer1().winSet();
+		set.player1WinPoint();
+		set.player1WinPoint();
+		set.player1WinPoint();
+		set.player1WinPoint();
 		assertEquals(set.getSetStatus(), SetStatus.Player1Win);
-		
-
-		set.getPlayer1().winSet();
-		set.getPlayer1().winSet();
-		set.getPlayer1().winSet();
-		set.getPlayer1().winSet();
-		set.getPlayer1().winSet();
-		set.getPlayer2().winSet();
-		set.getPlayer2().winSet();
-		set.getPlayer2().winSet();
-		set.getPlayer2().winSet();
-		set.getPlayer2().winSet();
-		// 5 - 5
-
-		set.getPlayer1().winSet();
-		// 6 - 5
-		assertEquals(set.getSetStatus(), SetStatus.NotEnd);
-		set.getPlayer2().winSet();
-		// 6 - 6
-		assertEquals(set.getSetStatus(), SetStatus.NotEnd);
-		set.getPlayer2().winSet();
-		// 6 - 7
-		assertEquals(set.getSetStatus(), SetStatus.Player2Win);
 	}
 	
+
 	@Test
-	public void tieBackTest(){
-		set.getPlayer1().setSetPoint(6);
-		set.getPlayer2().setSetPoint(6);
+	public void setTestLeadBy2Test(){
 		
-		set.getPlayer1().winPoint();
-		set.getPlayer1().winPoint();
-		set.getPlayer2().winPoint();
-		set.getPlayer1().winPoint();
-		set.getPlayer1().winPoint();
-		set.getPlayer2().winPoint();
-		set.getPlayer1().winPoint();
-		set.getPlayer1().winPoint();
-		// 6 - 2
-		assertEquals(set.getPlayer1().getStatus(), Status.WIN);
-
-		set.getPlayer1().winPoint();
-		set.getPlayer1().winPoint();
-		set.getPlayer2().winPoint();
-		set.getPlayer1().winPoint();
-		set.getPlayer1().winPoint();
-		set.getPlayer2().winPoint();
-		set.getPlayer1().winPoint();
-		set.getPlayer2().winPoint();
-		set.getPlayer2().winPoint();
-		
-		set.getPlayer2().winPoint();
+		set.getPlayer1().setSetPoint(5);
+		set.getPlayer2().setSetPoint(5);
 		// 5 - 5
-		assertEquals(set.getPlayer1().getStatus(), Status.NORMAL);
-		assertEquals(set.getPlayer2().getStatus(), Status.NORMAL);
 
-		set.getPlayer1().winPoint();
+		set.player1WinPoint();
+		set.player1WinPoint();
+		set.player1WinPoint();
+		set.player1WinPoint();
 		// 6 - 5
-		assertEquals(set.getPlayer1().getStatus(), Status.NORMAL);
-		assertEquals(set.getPlayer2().getStatus(), Status.NORMAL);
-
-		set.getPlayer2().winPoint();
-		// 6 - 6
-		assertEquals(set.getPlayer1().getStatus(), Status.NORMAL);
-		assertEquals(set.getPlayer2().getStatus(), Status.NORMAL);
-
-		set.getPlayer1().winPoint();
-		// 7 - 6
-		assertEquals(set.getPlayer1().getStatus(), Status.NORMAL);
-		assertEquals(set.getPlayer2().getStatus(), Status.NORMAL);
+		assertEquals(set.getSetStatus(), SetStatus.NotEnd);
 		
-		set.getPlayer1().winPoint();
-		// 8 - 6
-		assertEquals(set.getPlayer1().getStatus(), Status.WIN);
-
+		set.player1WinPoint();
+		set.player1WinPoint();
+		set.player1WinPoint();
+		set.player1WinPoint();
+		// 7 - 5
+		System.out.println(set.getPlayer1().getSetPoint() + " " + set.getPlayer2().getSetPoint());
+		assertEquals(set.getSetStatus(), SetStatus.Player1Win);
 	}
- 
+	
+
+	@Test
+	public void lastGameTest(){
+		
+		set.getPlayer1().setSetPoint(5);
+		set.getPlayer2().setSetPoint(5);
+		// 5 - 5
+
+		set.player1WinPoint();
+		set.player1WinPoint();
+		set.player1WinPoint();
+		set.player1WinPoint();
+		// 6 - 5
+		assertEquals(set.getSetStatus(), SetStatus.NotEnd);
+		
+		set.player2WinPoint();
+		set.player2WinPoint();
+		set.player2WinPoint();
+		set.player2WinPoint();
+		// 6 - 6
+		assertEquals(set.getSetStatus(), SetStatus.NotEnd);
+		
+		set.player1WinPoint();
+		set.player1WinPoint();
+		set.player1WinPoint();
+		set.player1WinPoint();
+		set.player1WinPoint();
+		set.player2WinPoint();
+		set.player2WinPoint();
+		set.player2WinPoint();
+		set.player2WinPoint();
+		
+		set.player1WinPoint();
+		// 6 - 4
+		assertEquals(set.getSetStatus(), SetStatus.Player1Win);
+	}
+	
+
+	@Test
+	public void lastGameTestLeadBy2(){
+		
+		set.getPlayer1().setSetPoint(5);
+		set.getPlayer2().setSetPoint(5);
+		// 5 - 5
+
+		set.player1WinPoint();
+		set.player1WinPoint();
+		set.player1WinPoint();
+		set.player1WinPoint();
+		// 6 - 5
+		assertEquals(set.getSetStatus(), SetStatus.NotEnd);
+		
+		set.player2WinPoint();
+		set.player2WinPoint();
+		set.player2WinPoint();
+		set.player2WinPoint();
+		// 6 - 6
+		assertEquals(set.getSetStatus(), SetStatus.NotEnd);
+		
+		set.player1WinPoint();
+		set.player1WinPoint();
+		set.player1WinPoint();
+		set.player1WinPoint();
+		set.player1WinPoint();
+		set.player2WinPoint();
+		set.player2WinPoint();
+		set.player2WinPoint();
+		set.player2WinPoint();
+		
+		set.player2WinPoint();
+		// 5 - 5
+		assertEquals(set.getSetStatus(), SetStatus.NotEnd);
+		
+		set.player1WinPoint();
+		// 6 - 5
+		assertEquals(set.getSetStatus(), SetStatus.NotEnd);
+		
+		set.player1WinPoint();
+		// 7 - 5
+		assertEquals(set.getSetStatus(), SetStatus.Player1Win);
+	}
+	
 }

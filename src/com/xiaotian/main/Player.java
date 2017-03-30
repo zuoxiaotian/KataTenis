@@ -46,6 +46,10 @@ public class Player {
 		}
 	}
 
+	public void winLastGamePoint() {
+		point += 1;
+	}
+
 	public void lossPoint() {
 		if (point == 40 && status == Status.ADVANTAGE) {
 			status = Status.DEUCE;
