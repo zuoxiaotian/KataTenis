@@ -3,6 +3,7 @@ package com.xiaotian.main;
 import java.util.Scanner;
 
 import com.xiaotian.main.Player.Status;
+import com.xiaotian.main.Set.SetStatus;
 
 public class Game {
 
@@ -27,6 +28,10 @@ public class Game {
 					(set.getPlayer2().getStatus() == Status.NORMAL?set.getPlayer2().getPoint():set.getPlayer2().getStatus()));
 			System.out.println();
 			
+			if (set.getSetStatus() != SetStatus.NotEnd){
+				System.out.println(set.getSetStatus());
+				break;
+			}
 		}
 		
 	}

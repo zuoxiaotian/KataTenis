@@ -101,7 +101,7 @@ public class Set {
 				player2.winSet();
 				player1.lossSet();
 
-				if (player2.getSetPoint() >= 6 && player2.getSetPoint() - player1.getSetPoint() > 2)
+				if (player2.getSetPoint() >= 6 && player2.getSetPoint() - player1.getSetPoint() >= 2)
 					setStatus = SetStatus.Player2Win;
 			}
 
