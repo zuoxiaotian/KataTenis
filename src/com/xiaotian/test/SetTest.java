@@ -8,6 +8,7 @@ import org.junit.Test;
 import com.sun.org.apache.bcel.internal.generic.NEW;
 import com.xiaotian.main.Player;
 import com.xiaotian.main.Player.Status;
+import com.xiaotian.main.Set.SetStatus;
 import com.xiaotian.main.Set;
 
 public class SetTest {
@@ -80,6 +81,97 @@ public class SetTest {
 		assertEquals(set.getPlayer2().getSetPoint(), 0);
 		assertEquals(set.getPlayer1().getStatus(), Status.NORMAL);
 		assertEquals(set.getPlayer2().getStatus(), Status.NORMAL);
+	}
+	
+	@Test
+	public void setTest(){
+		set.getPlayer1().winSet();
+		set.getPlayer2().winSet();
+		set.getPlayer1().winSet();
+		set.getPlayer1().winSet();
+		set.getPlayer2().winSet();
+		set.getPlayer1().winSet();
+		set.getPlayer2().winSet();
+		set.getPlayer1().winSet();
+		// 5 - 3
+		
+		set.getPlayer1().winSet();
+		assertEquals(set.getSetStatus(), SetStatus.Player1Win);
+		
+
+		set.getPlayer1().winSet();
+		set.getPlayer1().winSet();
+		set.getPlayer1().winSet();
+		set.getPlayer1().winSet();
+		set.getPlayer1().winSet();
+		set.getPlayer2().winSet();
+		set.getPlayer2().winSet();
+		set.getPlayer2().winSet();
+		set.getPlayer2().winSet();
+		set.getPlayer2().winSet();
+		// 5 - 5
+
+		set.getPlayer1().winSet();
+		// 6 - 5
+		assertEquals(set.getSetStatus(), SetStatus.NotEnd);
+		set.getPlayer2().winSet();
+		// 6 - 6
+		assertEquals(set.getSetStatus(), SetStatus.NotEnd);
+		set.getPlayer2().winSet();
+		// 6 - 7
+		assertEquals(set.getSetStatus(), SetStatus.Player2Win);
+	}
+	
+	@Test
+	public void tieBackTest(){
+		set.getPlayer1().setSetPoint(6);
+		set.getPlayer2().setSetPoint(6);
+		
+		set.getPlayer1().winPoint();
+		set.getPlayer1().winPoint();
+		set.getPlayer2().winPoint();
+		set.getPlayer1().winPoint();
+		set.getPlayer1().winPoint();
+		set.getPlayer2().winPoint();
+		set.getPlayer1().winPoint();
+		set.getPlayer1().winPoint();
+		// 6 - 2
+		assertEquals(set.getPlayer1().getStatus(), Status.WIN);
+
+		set.getPlayer1().winPoint();
+		set.getPlayer1().winPoint();
+		set.getPlayer2().winPoint();
+		set.getPlayer1().winPoint();
+		set.getPlayer1().winPoint();
+		set.getPlayer2().winPoint();
+		set.getPlayer1().winPoint();
+		set.getPlayer2().winPoint();
+		set.getPlayer2().winPoint();
+		
+		set.getPlayer2().winPoint();
+		// 5 - 5
+		assertEquals(set.getPlayer1().getStatus(), Status.NORMAL);
+		assertEquals(set.getPlayer2().getStatus(), Status.NORMAL);
+
+		set.getPlayer1().winPoint();
+		// 6 - 5
+		assertEquals(set.getPlayer1().getStatus(), Status.NORMAL);
+		assertEquals(set.getPlayer2().getStatus(), Status.NORMAL);
+
+		set.getPlayer2().winPoint();
+		// 6 - 6
+		assertEquals(set.getPlayer1().getStatus(), Status.NORMAL);
+		assertEquals(set.getPlayer2().getStatus(), Status.NORMAL);
+
+		set.getPlayer1().winPoint();
+		// 7 - 6
+		assertEquals(set.getPlayer1().getStatus(), Status.NORMAL);
+		assertEquals(set.getPlayer2().getStatus(), Status.NORMAL);
+		
+		set.getPlayer1().winPoint();
+		// 8 - 6
+		assertEquals(set.getPlayer1().getStatus(), Status.WIN);
+
 	}
  
 }
