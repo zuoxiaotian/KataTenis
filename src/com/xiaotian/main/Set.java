@@ -66,8 +66,8 @@ public class Set {
 			}
 		}
 		if(player2.getStatus() == Status.WIN){
-			player1.winSet();
-			player2.lossSet();
+			player2.winSet();
+			player1.lossSet();
 		}
 	}
 	
