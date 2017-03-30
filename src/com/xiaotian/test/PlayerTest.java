@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.xiaotian.main.Player;
+import com.xiaotian.main.Player.Status;
 
 public class PlayerTest {
 
@@ -37,8 +38,7 @@ public class PlayerTest {
 		player.winPoint();
 		assertEquals(player.getPoint(), 40);
 		player.winPoint();
-		assertEquals(player.getPoint(), 0);
-		assertEquals(player.getSetPoint(), 1);
+		assertEquals(player.getStatus(), Status.WIN);
 	}
 	
 	@Test
@@ -46,11 +46,9 @@ public class PlayerTest {
 		player.winPoint();
 		player.winPoint();
 		player.winPoint();
-		player.winPoint();
-		player.winPoint();
 		player.initSetScore();
 		assertEquals(player.getPoint(), 0);
-		assertEquals(player.getSetPoint(), 1);
+		assertEquals(player.getStatus(), Status.NORMAL);
 	}
 
 	@Test

@@ -20,7 +20,7 @@ public class SetTest {
 	public void setUp() throws Exception {
 		player1 = new Player();
 		player2 = new Player();
-		set = new Set(new Player(), new Player()); 
+		set = new Set(player1, player2); 
 	}
 
 	@Test
@@ -59,7 +59,6 @@ public class SetTest {
 		assertEquals(set.getPlayer1().getStatus(), Status.DEUCE);
 		assertEquals(set.getPlayer2().getStatus(), Status.DEUCE);
 		// deuce
-		
 		// player1 win 1 point, change game to player1 advantage
 		set.player1WinPoint();
 		assertEquals(set.getPlayer1().getPoint(), 40);
@@ -78,7 +77,7 @@ public class SetTest {
 		assertEquals(set.getPlayer1().getPoint(), 0);
 		assertEquals(set.getPlayer2().getPoint(), 0);
 		assertEquals(set.getPlayer1().getSetPoint(), 1);
-		assertEquals(set.getPlayer2().getSetPoint(), 1);
+		assertEquals(set.getPlayer2().getSetPoint(), 0);
 		assertEquals(set.getPlayer1().getStatus(), Status.NORMAL);
 		assertEquals(set.getPlayer2().getStatus(), Status.NORMAL);
 	}
